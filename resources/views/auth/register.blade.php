@@ -31,11 +31,19 @@
 
 @section('content')
     <main class="form-signin w-100 m-auto">
-        <form action="{{ route('login.post') }}" method="post">
+        <form action="{{ route('register.post') }}" method="post">
             @csrf
             <img class="mb-4" src="{{ asset('assets/img/earth-svgrepo-com.svg') }}" alt="" width="72"
                 height="57">
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Enter your name" name="name">
+                <label for="floatingInput">Enter your name</label>
+                @error('name')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
 
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
@@ -53,13 +61,6 @@
                 @enderror
             </div>
 
-            <div class="form-check text-start my-3">
-                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault"
-                    name="remember_me">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Remember me
-                </label>
-            </div>
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -71,9 +72,9 @@
                 </div>
             @endif
 
-            <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+            <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
             <div class="text-center mt-3">
-                <a href="{{ route('register') }}" class="text-decoration-none">Create a new account</a>
+                <a href="{{ route('login') }}" class="text-decoration-none">Already have an account? Sign in</a>
             </div>
             <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2025</p>
         </form>
